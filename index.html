@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pinpoint - Giải Pháp Marketing Số Toàn Diện</title>
+    <title>Pinpoint - SME Marketing Partner</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <script src="https://unpkg.com/lucide@latest"></script>
     
@@ -260,14 +260,15 @@
         .btn-primary {
             background: var(--accent);
             color: white;
-            padding: 14px 32px;
+            padding: 12px 24px;
             border-radius: 8px;
             text-decoration: none;
             font-weight: 600;
             border: none;
             cursor: pointer;
             transition: all 0.3s ease;
-            font-size: 15px;
+            font-size: 14px;
+            white-space: nowrap;
         }
 
         .btn-primary:hover {
@@ -279,14 +280,15 @@
         .btn-secondary {
             background: transparent;
             color: var(--primary);
-            padding: 14px 32px;
+            padding: 12px 24px;
             border-radius: 8px;
             text-decoration: none;
             font-weight: 600;
             border: 2px solid var(--primary);
             cursor: pointer;
             transition: all 0.3s ease;
-            font-size: 15px;
+            font-size: 14px;
+            white-space: nowrap;
         }
 
         .btn-secondary:hover {
@@ -450,7 +452,7 @@
         .usp-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
-            gap: 32px;
+            gap: 28px;
             margin-top: 60px;
         }
 
@@ -546,7 +548,7 @@
         }
 
         .timeline-step:nth-child(even) .step-content .step-details {
-            text-align: right;
+            text-align: left;
         }
 
         .timeline-step:nth-child(even) .step-content .step-tags {
@@ -1285,11 +1287,10 @@
         }
 
         .results-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 24px;
-            margin: 40px 0;
             display: none;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin: 20px 0;
         }
 
         .results-grid.visible {
@@ -1302,6 +1303,25 @@
             border-radius: 12px;
             border-left: 4px solid var(--primary);
             text-align: left;
+        }
+
+        .invoice-table {
+            width: 100%;
+            border-collapse: collapse;
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+        }
+        .invoice-table td {
+            padding: 14px 20px;
+            font-size: 0.95rem;
+            color: var(--text-dark);
+            border-bottom: 1px solid #f1f5f9;
+        }
+        .invoice-table tr:last-child td {
+            border-bottom: none;
+            padding: 18px 20px;
         }
 
         .result-box h4 {
@@ -1339,18 +1359,30 @@
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
         }
 
+        .comparison-table {
+            min-width: 750px;
+        }
+
         .comparison-table th,
         .comparison-table td {
-            padding: 16px;
+            padding: 12px 14px;
             text-align: left;
             border-bottom: 1px solid var(--border-color);
             font-size: 13px;
+            vertical-align: top;
+            line-height: 1.5;
         }
 
         .comparison-table th {
             background: var(--light-gray);
             font-weight: 700;
             color: var(--text-dark);
+            position: sticky;
+            top: 0;
+        }
+        .comparison-table th.pinpoint-col {
+            background: linear-gradient(135deg, #2B4A8E, #3B5FA8) !important;
+            color: white !important;
         }
 
         .comparison-table tr:last-child td {
@@ -1359,6 +1391,15 @@
 
         .comparison-table .pinpoint {
             background: rgba(43, 74, 142, 0.05);
+            border-left: 3px solid var(--primary-color);
+            padding-left: 14px;
+        }
+
+        .comparison-table small {
+            font-size: 11px;
+            line-height: 1.4;
+            display: block;
+            margin-top: 2px;
         }
 
         .check-icon {
@@ -1508,12 +1549,14 @@
 <body>
     <!-- Navigation -->
     <nav id="navbar" class="fade-in">
-        <div class="logo">
+        <div class="logo" style="display: flex; align-items: center; gap: 10px;">
             <svg class="logo-svg" viewBox="0 0 100 100" fill="none">
                 <circle cx="50" cy="52" r="36" fill="#B8E4F0" opacity="0.7"/>
                 <circle cx="38" cy="38" r="22" fill="#2B4A8E"/>
             </svg>
             <span class="logo-text">pinpoint</span>
+            <span style="display: inline-block; width: 1px; height: 28px; background: #CBD5E1; margin: 0 4px;"></span>
+            <img src="logo-pmax.png" alt="PMAX" style="height: 28px; object-fit: contain;">
         </div>
         <nav-links>
             <a href="#about">Giới thiệu</a>
@@ -1521,6 +1564,7 @@
             <a href="#pricing">Gói dịch vụ</a>
             <a href="#casestudies">Case Study</a>
             <a href="#calculator">Tính toán ROI</a>
+            <a href="#healthcheck" style="color: #F97316;">🩺 Khám sức khoẻ</a>
             <button class="btn-contact" onclick="document.getElementById('hero').scrollIntoView({behavior: 'smooth'})">Liên hệ tư vấn</button>
         </nav-links>
     </nav>
@@ -1533,12 +1577,14 @@
         <div class="container">
             <div class="hero-content">
                 <div class="hero-left fade-in">
-                    <div class="pill-badge">Đối tác Marketing Hiệu Suất</div>
-                    <h1>Giải Pháp<br>Marketing Số<br><strong>Toàn Diện</strong></h1>
-                    <p>Tăng doanh số bán hàng, tìm kiếm khách hàng tiềm năng, và xây dựng nhận biết thương hiệu với công nghệ AI và đội ngũ chuyên gia hàng đầu.</p>
-                    <div class="hero-buttons">
-                        <button class="btn-primary" onclick="document.getElementById('calculator').scrollIntoView({behavior: 'smooth'})">Tính toán ROI ngay →</button>
+                    <div class="pill-badge">Business Unit trực thuộc PMAX — Total Marketing Partner</div>
+                    <h1>Pinpoint<br><strong>SME Marketing<br>Partner</strong></h1>
+                    <p>Pinpoint SME Marketing Partner là đơn vị trực thuộc PMAX — Total Marketing Partner, đem đến giải pháp quảng cáo giúp doanh nghiệp SME tăng trưởng về doanh số, tìm khách hàng tiềm năng và xây dựng thương hiệu kết hợp đa dạng sản phẩm marketing cùng công nghệ và đội ngũ chuyên gia hàng đầu.</p>
+                    <div class="hero-buttons" style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; max-width: 400px;">
+                        <button class="btn-secondary" onclick="document.getElementById('pricing').scrollIntoView({behavior: 'smooth'})">Gói dịch vụ</button>
                         <button class="btn-secondary" onclick="document.getElementById('casestudies').scrollIntoView({behavior: 'smooth'})">Xem Case Study</button>
+                        <button class="btn-primary" onclick="document.getElementById('calculator').scrollIntoView({behavior: 'smooth'})">Xem báo giá ngay →</button>
+                        <button class="btn-secondary" style="border-color: #F97316; color: #F97316;" onclick="document.getElementById('healthcheck').scrollIntoView({behavior: 'smooth'})">🩺 Khám sức khoẻ</button>
                     </div>
                     <div class="trust-badge">Tin tưởng bởi 300+ doanh nghiệp</div>
                     <div class="stats-row">
@@ -1553,23 +1599,23 @@
                     <form id="contactForm">
                         <div class="form-group">
                             <label>Tên</label>
-                            <input type="text" placeholder="Tên của bạn" required>
+                            <input type="text" name="name" id="cfName" placeholder="Tên của bạn" required>
                         </div>
                         <div class="form-group">
                             <label>Email</label>
-                            <input type="email" placeholder="email@company.com" required>
+                            <input type="email" name="email" id="cfEmail" placeholder="email@company.com" required>
                         </div>
                         <div class="form-group">
                             <label>Số điện thoại</label>
-                            <input type="tel" placeholder="+84 9 xxxx xxxx" required>
+                            <input type="tel" name="phone" id="cfPhone" placeholder="+84 9 xxxx xxxx" required>
                         </div>
                         <div class="form-group">
                             <label>Website</label>
-                            <input type="url" placeholder="https://yoursite.com">
+                            <input type="url" name="website" id="cfWebsite" placeholder="https://yoursite.com">
                         </div>
                         <div class="form-group">
                             <label>Ngân sách ước tính</label>
-                            <select required>
+                            <select name="budget" id="cfBudget" required>
                                 <option value="">Chọn ngân sách</option>
                                 <option value="5-50">5 - 50 triệu</option>
                                 <option value="50-100">50 - 100 triệu</option>
@@ -1578,7 +1624,7 @@
                                 <option value="500+">Trên 500 triệu</option>
                             </select>
                         </div>
-                        <button type="submit" class="form-submit">Nhận tư vấn miễn phí →</button>
+                        <button type="submit" class="form-submit" id="cfSubmitBtn">Nhận tư vấn miễn phí →</button>
                         <div class="form-note">
                             <strong>Miễn phí tư vấn</strong> • <strong>Cam kết KPI</strong> • <strong>Không ràng buộc</strong>
                         </div>
@@ -1606,32 +1652,61 @@
     <!-- About/USP Section -->
     <section id="about">
         <div class="container">
+            <div style="text-align: center; margin-bottom: 12px;">
+                <span style="display: inline-flex; align-items: center; gap: 8px; background: linear-gradient(135deg, var(--primary-color), #3B5FA8); color: white; padding: 8px 20px; border-radius: 24px; font-size: 0.8rem; font-weight: 600; letter-spacing: 0.5px;">
+                    <img src="logo-pmax.png" alt="PMAX" style="height: 20px; filter: brightness(0) invert(1); object-fit: contain;">
+                    Powered by PMAX — Total Marketing Partner
+                </span>
+            </div>
             <h2>Tại sao chọn Pinpoint?</h2>
-            <p class="subtitle">Giải pháp marketing toàn diện với công nghệ AI tiên tiến và đội ngũ chuyên gia hàng đầu.</p>
-            
+
             <div class="usp-grid">
                 <div class="usp-card fade-in">
                     <div class="usp-icon">
-                        <i data-lucide="bar-chart-3"></i>
+                        <i data-lucide="rocket"></i>
                     </div>
-                    <h3>Giải pháp Marketing số toàn diện</h3>
-                    <p>4 giải pháp cốt lõi, hơn 10 dịch vụ chuyên biệt phục vụ đa dạng nhu cầu kinh doanh</p>
+                    <h3>Giải pháp tăng trưởng Marketing cho SME</h3>
+                    <p>Đem giải pháp quảng cáo đa kênh, đa nền tảng giúp doanh nghiệp SME tăng trưởng doanh số, tìm khách hàng tiềm năng và xây dựng thương hiệu. Quy trình tinh gọn, ngân sách linh hoạt, hiệu quả đo lường được.</p>
+                </div>
+
+                <div class="usp-card fade-in">
+                    <div class="usp-icon">
+                        <i data-lucide="award"></i>
+                    </div>
+                    <h3>Đối tác chính thức các nền tảng quảng cáo</h3>
+                    <p>Pinpoint trực thuộc PMAX — đối tác cao cấp của Facebook, Google, TikTok. Được ưu tiên hỗ trợ kỹ thuật, tiếp cận tính năng mới sớm và data benchmark từ 600+ doanh nghiệp đa ngành.</p>
                 </div>
 
                 <div class="usp-card fade-in">
                     <div class="usp-icon">
                         <i data-lucide="cpu"></i>
                     </div>
-                    <h3>Hệ thống công nghệ AI - PAXY</h3>
-                    <p>Công cụ lên kế hoạch, tối ưu và báo cáo hiệu quả quảng cáo đa kênh. Tăng hiệu suất +35%</p>
+                    <h3>Hệ thống Data & AI tiên tiến</h3>
+                    <p>Ứng dụng hệ thống data nâng cao từ PMAX để tối ưu chiến dịch real-time, báo cáo hiệu quả đa kênh và đưa ra quyết định dựa trên dữ liệu. Giúp tối đa hoá hiệu suất quảng cáo cho mọi ngành hàng.</p>
+                </div>
+
+                <div class="usp-card fade-in">
+                    <div class="usp-icon">
+                        <i data-lucide="trending-up"></i>
+                    </div>
+                    <h3>Tối đa kết quả chuyển đổi</h3>
+                    <p>Tập trung tối ưu chuyển đổi thực tế: đơn hàng, lead, doanh thu. Mô hình phí dịch vụ gắn với hiệu quả — lợi ích của bạn và Pinpoint luôn cùng hướng. Hiệu quả tốt hơn, cả hai cùng hưởng.</p>
+                </div>
+
+                <div class="usp-card fade-in">
+                    <div class="usp-icon">
+                        <i data-lucide="briefcase"></i>
+                    </div>
+                    <h3>Đa ngành — Đa giải pháp</h3>
+                    <p>Triển khai thành công cho hàng trăm doanh nghiệp đa ngành: F&B, sức khoẻ & làm đẹp, thời trang, nội thất, giáo dục, bất động sản, công nghệ... Mỗi ngành có chiến lược và benchmark riêng.</p>
                 </div>
 
                 <div class="usp-card fade-in">
                     <div class="usp-icon">
                         <i data-lucide="users"></i>
                     </div>
-                    <h3>Đội ngũ chuyên gia chất lượng cao</h3>
-                    <p>Premium Partner của Google, Meta, TikTok, Zalo. Hơn 300 khách hàng và 500 dự án thành công</p>
+                    <h3>Đội ngũ chuyên gia tận tâm</h3>
+                    <p>Mỗi khách hàng được phân bổ team chuyên trách gồm Account Manager, Media Planner và Creative Specialist. Tư vấn chiến lược sát sao, đồng hành xuyên suốt từ lập kế hoạch đến tối ưu hiệu quả.</p>
                 </div>
             </div>
         </div>
@@ -1656,10 +1731,10 @@
                         <div class="step-details">
                             <p>Đội ngũ chuyên gia phân tích chuyên sâu về thị trường, đối thủ và doanh nghiệp để xây dựng nền tảng chiến lược vững chắc.</p>
                             <ul>
-                                <li><i data-lucide="check-circle"></i> Nghiên cứu thị trường & phân tích đối thủ cạnh tranh</li>
-                                <li><i data-lucide="check-circle"></i> Đánh giá hiện trạng kênh marketing hiện tại</li>
-                                <li><i data-lucide="check-circle"></i> Xác định KPI & mục tiêu phù hợp ngân sách</li>
-                                <li><i data-lucide="check-circle"></i> Đề xuất kênh quảng cáo & phân bổ ngân sách tối ưu</li>
+                                <li><i data-lucide="check-circle"></i> Nghiên cứu thị trường & đối thủ</li>
+                                <li><i data-lucide="check-circle"></i> Audit kênh marketing hiện tại</li>
+                                <li><i data-lucide="check-circle"></i> Xác định KPI phù hợp ngân sách</li>
+                                <li><i data-lucide="check-circle"></i> Đề xuất kênh & phân bổ ngân sách</li>
                             </ul>
                             <div class="step-tags">
                                 <span class="step-tag">Market Research</span>
@@ -1682,10 +1757,10 @@
                         <div class="step-details">
                             <p>Xây dựng cấu trúc phí minh bạch gồm định phí + biến phí theo KPI, đảm bảo lợi ích song phương cho cả hai bên.</p>
                             <ul>
-                                <li><i data-lucide="check-circle"></i> Thiết kế cấu trúc phí: Định phí + Biến phí theo hiệu quả</li>
-                                <li><i data-lucide="check-circle"></i> Xây dựng creative brief & kịch bản quảng cáo</li>
-                                <li><i data-lucide="check-circle"></i> Setup tracking & đo lường chuyển đổi</li>
-                                <li><i data-lucide="check-circle"></i> Cam kết KPI rõ ràng bằng hợp đồng</li>
+                                <li><i data-lucide="check-circle"></i> Cấu trúc phí: Định phí + Biến phí</li>
+                                <li><i data-lucide="check-circle"></i> Creative brief & kịch bản QC</li>
+                                <li><i data-lucide="check-circle"></i> Setup tracking & đo lường</li>
+                                <li><i data-lucide="check-circle"></i> Cam kết KPI bằng hợp đồng</li>
                             </ul>
                             <div class="step-tags">
                                 <span class="step-tag">Fee Structure</span>
@@ -1708,10 +1783,10 @@
                         <div class="step-details">
                             <p>Đội ngũ chuyên gia triển khai đa kênh, tối ưu bằng AI PAXY để đạt KPI nhanh nhất với chi phí thấp nhất.</p>
                             <ul>
-                                <li><i data-lucide="check-circle"></i> Triển khai chiến dịch đa kênh: Meta, Google, TikTok, Shopee...</li>
-                                <li><i data-lucide="check-circle"></i> Tối ưu liên tục bằng AI PAXY & đội ngũ chuyên gia</li>
-                                <li><i data-lucide="check-circle"></i> A/B testing sáng tạo & landing page</li>
-                                <li><i data-lucide="check-circle"></i> Giám sát hiệu quả real-time, xử lý vấn đề ngay lập tức</li>
+                                <li><i data-lucide="check-circle"></i> Chạy đa kênh: Meta, Google, TikTok…</li>
+                                <li><i data-lucide="check-circle"></i> Tối ưu bằng AI PAXY + chuyên gia</li>
+                                <li><i data-lucide="check-circle"></i> A/B testing sáng tạo & LP</li>
+                                <li><i data-lucide="check-circle"></i> Giám sát real-time 24/7</li>
                             </ul>
                             <div class="step-tags">
                                 <span class="step-tag">Multi-channel Ads</span>
@@ -1734,10 +1809,10 @@
                         <div class="step-details">
                             <p>Review KPI chi tiết, phân tích dữ liệu chuyên sâu và điều chỉnh chiến lược dựa trên kết quả thực tế.</p>
                             <ul>
-                                <li><i data-lucide="check-circle"></i> Báo cáo hiệu quả hàng tuần với số liệu chi tiết</li>
-                                <li><i data-lucide="check-circle"></i> Monthly review: Phân tích ROI, ROAS, CPL chuyên sâu</li>
-                                <li><i data-lucide="check-circle"></i> Đề xuất giải pháp mới & testing innovation</li>
-                                <li><i data-lucide="check-circle"></i> Nghiên cứu đối thủ & xu hướng ngành hàng định kỳ</li>
+                                <li><i data-lucide="check-circle"></i> Weekly report chi tiết</li>
+                                <li><i data-lucide="check-circle"></i> Monthly review: ROI, ROAS, CPL</li>
+                                <li><i data-lucide="check-circle"></i> Đề xuất giải pháp & innovation</li>
+                                <li><i data-lucide="check-circle"></i> Phân tích đối thủ & xu hướng</li>
                             </ul>
                             <div class="step-tags">
                                 <span class="step-tag">Weekly Report</span>
@@ -1773,7 +1848,7 @@
                         <div class="pricing-feature">Tần suất cài đặt / tối ưu / báo cáo hằng ngày</div>
                         <div class="pricing-feature">Báo cáo và kế hoạch cơ bản bám sát hiệu quả chiến dịch</div>
                     </div>
-                    <button class="btn-primary">Tư vấn ngay</button>
+                    <button class="btn-primary" onclick="document.getElementById('contactForm').scrollIntoView({behavior:'smooth',block:'center'});setTimeout(()=>document.getElementById('cfName').focus(),600);">Tư vấn ngay</button>
                 </div>
 
                 <div class="pricing-card fade-in">
@@ -1789,7 +1864,7 @@
                         <div class="pricing-feature">Báo cáo chi tiết - bám sát hiệu quả doanh nghiệp</div>
                         <div class="pricing-feature">Đề xuất giải pháp mới hằng tháng + testing innovation</div>
                     </div>
-                    <button class="btn-primary">Tư vấn ngay</button>
+                    <button class="btn-primary" onclick="document.getElementById('contactForm').scrollIntoView({behavior:'smooth',block:'center'});setTimeout(()=>document.getElementById('cfName').focus(),600);">Tư vấn ngay</button>
                 </div>
 
                 <div class="pricing-card fade-in">
@@ -1806,7 +1881,7 @@
                         <div class="pricing-feature">Nghiên cứu đánh giá đối thủ / ngành hàng hằng quý</div>
                         <div class="pricing-feature">Đề xuất giải pháp mới hằng tháng + testing innovation</div>
                     </div>
-                    <button class="btn-primary">Tư vấn ngay</button>
+                    <button class="btn-primary" onclick="document.getElementById('contactForm').scrollIntoView({behavior:'smooth',block:'center'});setTimeout(()=>document.getElementById('cfName').focus(),600);">Tư vấn ngay</button>
                 </div>
             </div>
         </div>
@@ -1875,160 +1950,354 @@
                     <div class="solution-tab" data-solution="awareness">Nhận biết</div>
                 </div>
 
-                <!-- Sales Solution Results -->
-                <div id="salesResults" class="results-grid visible">
-                    <div class="result-box">
-                        <h4>Nhập ROAS target</h4>
-                        <div class="result-metric">
-                            <label>ROAS (Revenue/Cost)</label>
-                            <input type="number" id="roasInput" min="1" max="10" step="0.1" value="3.5" style="width: 100%; padding: 8px; border: 1px solid var(--border-color); border-radius: 6px; font-size: 14px;">
+                <!-- ============ SALES SOLUTION ============ -->
+                <div id="salesResults" style="display: block;">
+                    <!-- Input -->
+                    <div class="results-grid visible">
+                        <div class="result-box">
+                            <h4>Nhập ROAS target</h4>
+                            <div class="result-metric">
+                                <label>ROAS (Revenue/Cost)</label>
+                                <input type="number" id="roasInput" min="1" max="10" step="0.1" value="3.5" style="width: 100%; padding: 8px; border: 1px solid var(--border-color); border-radius: 6px; font-size: 14px;">
+                            </div>
                         </div>
                     </div>
-                    <div class="result-box">
-                        <h4>Ngân sách</h4>
-                        <div class="value" id="salesBudget">50 triệu đ</div>
+
+                    <!-- ① Kết quả dự kiến -->
+                    <div style="margin-top: 24px;">
+                        <h3 style="margin-bottom: 16px; color: var(--primary-color); font-size: 1.1rem; display: flex; align-items: center; gap: 8px;">
+                            <span style="background: var(--primary-color); color: white; width: 28px; height: 28px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; font-size: 0.85rem;">1</span>
+                            Kết quả dự kiến
+                        </h3>
+                        <div class="results-grid visible">
+                            <div class="result-box">
+                                <h4>Ngân sách quảng cáo</h4>
+                                <div class="value" id="salesBudget">50 triệu đ</div>
+                            </div>
+                            <div class="result-box">
+                                <h4>ROAS</h4>
+                                <div class="value" id="displayRoas">3.5x</div>
+                            </div>
+                            <div class="result-box">
+                                <h4>Doanh thu ước tính</h4>
+                                <div class="value" id="salesRevenue">175 triệu đ</div>
+                            </div>
+                            <div class="result-box">
+                                <h4>Lợi nhuận gộp</h4>
+                                <div class="value" id="salesGrossProfit">125 triệu đ</div>
+                            </div>
+                        </div>
                     </div>
-                    <div class="result-box">
-                        <h4>ROAS</h4>
-                        <div class="value" id="displayRoas">3.5x</div>
+
+                    <!-- ② Chi phí dịch vụ -->
+                    <div style="margin-top: 24px;">
+                        <h3 style="margin-bottom: 16px; color: var(--accent-color); font-size: 1.1rem; display: flex; align-items: center; gap: 8px;">
+                            <span style="background: var(--accent-color); color: white; width: 28px; height: 28px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; font-size: 0.85rem;">2</span>
+                            Chi phí dịch vụ Pinpoint
+                        </h3>
+                        <div class="results-grid visible">
+                            <div class="result-box">
+                                <h4>Định phí hàng tháng</h4>
+                                <div class="value" id="salesFixedFee">10 triệu đ</div>
+                                <small style="color: var(--text-light); display: block; margin-top: 4px;">Theo gói ngân sách</small>
+                            </div>
+                            <div class="result-box">
+                                <h4>Biến phí</h4>
+                                <div class="value" id="salesVariableFee">12.5 triệu đ</div>
+                                <small style="color: var(--text-light); display: block; margin-top: 4px;">10% × Lợi nhuận gộp</small>
+                            </div>
+                            <div class="result-box">
+                                <h4>ROI thực tế</h4>
+                                <div class="value" id="salesROI">141%</div>
+                                <small style="color: var(--text-light); display: block; margin-top: 4px;">Lợi nhuận sau phí ÷ Tổng chi</small>
+                            </div>
+                        </div>
                     </div>
-                    <div class="result-box">
-                        <h4>Doanh thu ước tính</h4>
-                        <div class="value" id="salesRevenue">175 triệu đ</div>
-                    </div>
-                    <div class="result-box">
-                        <h4>Lợi nhuận gộp</h4>
-                        <div class="value" id="salesGrossProfit">125 triệu đ</div>
-                    </div>
-                    <div class="result-box">
-                        <h4>Định phí</h4>
-                        <div class="value" id="salesFixedFee">8 triệu đ</div>
-                    </div>
-                    <div class="result-box">
-                        <h4>Biến phí (10% lợi nhuận)</h4>
-                        <div class="value" id="salesVariableFee">17.5 triệu đ</div>
-                    </div>
-                    <div class="result-box">
-                        <h4>Tổng chi phí dịch vụ</h4>
-                        <div class="value" id="salesTotalFee">25.5 triệu đ</div>
-                    </div>
-                    <div class="result-box">
-                        <h4>ROI thực tế</h4>
-                        <div class="value" id="salesROI">312%</div>
+
+                    <!-- ③ Bảng hoá đơn -->
+                    <div style="margin-top: 24px;">
+                        <h3 style="margin-bottom: 16px; color: #1E293B; font-size: 1.1rem; display: flex; align-items: center; gap: 8px;">
+                            <span style="background: #1E293B; color: white; width: 28px; height: 28px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; font-size: 0.85rem;">3</span>
+                            Tổng chi phí thực tế (Hoá đơn)
+                        </h3>
+                        <table class="invoice-table">
+                            <tbody>
+                                <tr>
+                                    <td style="font-weight: 600;">Ngân sách quảng cáo</td>
+                                    <td style="text-align: right;" id="salesInvBudget">50 triệu đ</td>
+                                </tr>
+                                <tr>
+                                    <td>Định phí dịch vụ</td>
+                                    <td style="text-align: right;" id="salesInvFixed">10 triệu đ</td>
+                                </tr>
+                                <tr>
+                                    <td>Biến phí dịch vụ</td>
+                                    <td style="text-align: right;" id="salesInvVariable">12.5 triệu đ</td>
+                                </tr>
+                                <tr style="border-top: 1px solid #e2e8f0;">
+                                    <td style="font-weight: 600;">Phí dịch vụ trước thuế</td>
+                                    <td style="text-align: right; font-weight: 600;" id="salesInvSubtotal">22.5 triệu đ</td>
+                                </tr>
+                                <tr>
+                                    <td>VAT (8%)</td>
+                                    <td style="text-align: right;" id="salesInvVAT">1.8 triệu đ</td>
+                                </tr>
+                                <tr style="border-top: 2px solid var(--primary-color);">
+                                    <td style="font-weight: 700; font-size: 1.05rem; color: var(--primary-color);">Phí dịch vụ sau thuế</td>
+                                    <td style="text-align: right; font-weight: 700; font-size: 1.05rem; color: var(--primary-color);" id="salesInvServiceTotal">24.3 triệu đ</td>
+                                </tr>
+                                <tr style="background: linear-gradient(135deg, #2B4A8E10, #4ECDC410); border-top: 2px solid var(--primary-color);">
+                                    <td style="font-weight: 700; font-size: 1.1rem; color: var(--primary-color);">TỔNG THỰC CHI</td>
+                                    <td style="text-align: right; font-weight: 700; font-size: 1.1rem; color: var(--primary-color);" id="salesInvTotal">74.3 triệu đ</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <small style="color: var(--text-light); display: block; margin-top: 8px; font-style: italic;">* Tổng thực chi = Ngân sách quảng cáo + Phí dịch vụ sau thuế (VAT 8%)</small>
                     </div>
                 </div>
 
-                <!-- Leads Solution Results -->
-                <div id="leadsResults" class="results-grid">
-                    <div class="result-box">
-                        <h4>Nhập CPL target</h4>
-                        <div class="result-metric">
-                            <label>Chi phí mỗi Lead</label>
-                            <input type="number" id="cplInput" min="10000" step="10000" value="500000" style="width: 100%; padding: 8px; border: 1px solid var(--border-color); border-radius: 6px; font-size: 14px;">
+                <!-- ============ LEADS SOLUTION ============ -->
+                <div id="leadsResults" style="display: none;">
+                    <!-- Input -->
+                    <div class="results-grid visible">
+                        <div class="result-box">
+                            <h4>Nhập CPL target</h4>
+                            <div class="result-metric">
+                                <label>Chi phí mỗi Lead (VNĐ)</label>
+                                <input type="number" id="cplInput" min="10000" step="10000" value="500000" style="width: 100%; padding: 8px; border: 1px solid var(--border-color); border-radius: 6px; font-size: 14px;">
+                            </div>
                         </div>
                     </div>
-                    <div class="result-box">
-                        <h4>Tổng Leads</h4>
-                        <div class="value" id="totalLeads">100</div>
-                    </div>
-                    <div class="result-box">
-                        <h4>CPL tính toán</h4>
-                        <div class="value" id="calculatedCPL">500K đ</div>
-                    </div>
-                    <div class="result-box">
-                        <h4>Leads đủ điều kiện (40%)</h4>
-                        <div class="value" id="qualifiedLeads">40</div>
-                    </div>
-                </div>
 
-                <!-- Leads Scenarios -->
-                <div id="leadsScenarios" style="display: none; margin-top: 30px;">
-                    <h3 style="margin-bottom: 20px; text-align: center;">Ba Kịch Bản Định Giá</h3>
-                    <div class="results-grid">
-                        <div class="result-box">
-                            <h4>Kịch bản 1: Đạt mục tiêu</h4>
-                            <div class="result-metric">
-                                <label>Định phí</label>
-                                <div class="value" id="scenario1Fixed">8 triệu đ</div>
+                    <!-- ① KPI chính: Chi phí khách hàng chất lượng -->
+                    <div style="margin-top: 24px;">
+                        <h3 style="margin-bottom: 16px; color: var(--primary-color); font-size: 1.1rem; display: flex; align-items: center; gap: 8px;">
+                            <span style="background: var(--primary-color); color: white; width: 28px; height: 28px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; font-size: 0.85rem;">1</span>
+                            Kết quả dự kiến
+                        </h3>
+                        <div class="results-grid visible">
+                            <div class="result-box">
+                                <h4>Ngân sách quảng cáo</h4>
+                                <div class="value" id="leadsBudget">50 triệu đ</div>
                             </div>
-                            <div class="result-metric">
-                                <label>Biến phí (10% budget)</label>
-                                <div class="value" id="scenario1Variable">5 triệu đ</div>
+                            <div class="result-box">
+                                <h4>CPL target</h4>
+                                <div class="value" id="calculatedCPL">500K đ</div>
+                                <small style="color: var(--text-light); display: block; margin-top: 4px;">Chi phí mỗi thông tin KH</small>
                             </div>
-                            <div class="result-metric">
-                                <label>Tổng chi phí</label>
-                                <div class="value" id="scenario1Total">13 triệu đ</div>
+                            <div class="result-box" style="background: linear-gradient(135deg, #EEF2FF, #E0E7FF); border: 2px solid var(--primary-color);">
+                                <h4 style="color: var(--primary-color);">Chi phí KH chất lượng (CPQL)</h4>
+                                <div class="value" style="color: var(--primary-color); font-size: 1.6rem;" id="cpqlValue">1,250K đ</div>
+                                <small style="color: var(--text-light); display: block; margin-top: 4px;">= CPL ÷ 40% (tỉ lệ KH chất lượng TB)</small>
                             </div>
-                        </div>
-                        <div class="result-box">
-                            <h4>Kịch bản 2: Tốt hơn 20%</h4>
-                            <div class="result-metric">
-                                <label>Định phí</label>
-                                <div class="value" id="scenario2Fixed">8 triệu đ</div>
+                            <div class="result-box">
+                                <h4>Tổng Leads dự kiến</h4>
+                                <div class="value" id="totalLeads">100</div>
                             </div>
-                            <div class="result-metric">
-                                <label>Biến phí (12% budget)</label>
-                                <div class="value" id="scenario2Variable">6 triệu đ</div>
-                            </div>
-                            <div class="result-metric">
-                                <label>Tổng chi phí</label>
-                                <div class="value" id="scenario2Total">14 triệu đ</div>
+                            <div class="result-box">
+                                <h4>KH chất lượng dự kiến</h4>
+                                <div class="value" id="qualifiedLeads">40</div>
+                                <small style="color: var(--text-light); display: block; margin-top: 4px;">40% × Tổng leads</small>
                             </div>
                         </div>
-                        <div class="result-box">
-                            <h4>Kịch bản 3: Kém hơn 20%</h4>
-                            <div class="result-metric">
-                                <label>Định phí</label>
-                                <div class="value" id="scenario3Fixed">8 triệu đ</div>
+                    </div>
+
+                    <!-- ② Chi phí dịch vụ - 3 kịch bản -->
+                    <div style="margin-top: 24px;">
+                        <h3 style="margin-bottom: 16px; color: var(--accent-color); font-size: 1.1rem; display: flex; align-items: center; gap: 8px;">
+                            <span style="background: var(--accent-color); color: white; width: 28px; height: 28px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; font-size: 0.85rem;">2</span>
+                            Chi phí dịch vụ theo hiệu quả
+                        </h3>
+                        <p style="color: var(--text-light); margin-bottom: 16px; font-size: 0.9rem;">Biến phí được tính dựa trên hiệu quả thực tế so với mức CPQL mục tiêu. Hiệu quả càng tốt, biến phí càng cao — nhưng khách hàng vẫn được lợi vì chi phí tổng thể thấp hơn.</p>
+                        <div class="results-grid visible" style="grid-template-columns: repeat(3, 1fr);">
+                            <!-- Kịch bản 1: Đạt mục tiêu -->
+                            <div class="result-box" style="border-top: 3px solid #3B82F6;">
+                                <h4 style="color: #3B82F6; margin-bottom: 12px;">Đạt mục tiêu</h4>
+                                <div class="result-metric">
+                                    <label>CPQL thực tế</label>
+                                    <div class="value" style="font-size: 1rem;" id="s1CPQL">1,250K đ</div>
+                                </div>
+                                <div class="result-metric">
+                                    <label>Định phí</label>
+                                    <div class="value" style="font-size: 1rem;" id="s1Fixed">10 triệu đ</div>
+                                </div>
+                                <div class="result-metric">
+                                    <label>Biến phí <strong>(10% × budget)</strong></label>
+                                    <div class="value" style="font-size: 1rem;" id="s1Variable">5 triệu đ</div>
+                                </div>
+                                <div class="result-metric" style="border-top: 2px solid #3B82F6; padding-top: 8px; margin-top: 8px;">
+                                    <label style="font-weight: 700;">Tổng phí dịch vụ</label>
+                                    <div class="value" style="font-size: 1.1rem; color: #3B82F6;" id="s1Total">15 triệu đ</div>
+                                </div>
                             </div>
-                            <div class="result-metric">
-                                <label>Biến phí (8% budget)</label>
-                                <div class="value" id="scenario3Variable">4 triệu đ</div>
+                            <!-- Kịch bản 2: Tốt hơn 20% -->
+                            <div class="result-box" style="border-top: 3px solid #10B981; background: linear-gradient(135deg, #F0FDF4, #ECFDF5);">
+                                <h4 style="color: #10B981; margin-bottom: 12px;">Tốt hơn 20%</h4>
+                                <div class="result-metric">
+                                    <label>CPQL thực tế</label>
+                                    <div class="value" style="font-size: 1rem;" id="s2CPQL">1,000K đ</div>
+                                </div>
+                                <div class="result-metric">
+                                    <label>Định phí</label>
+                                    <div class="value" style="font-size: 1rem;" id="s2Fixed">10 triệu đ</div>
+                                </div>
+                                <div class="result-metric">
+                                    <label>Biến phí <strong>(12% × budget)</strong></label>
+                                    <div class="value" style="font-size: 1rem;" id="s2Variable">6 triệu đ</div>
+                                </div>
+                                <div class="result-metric" style="border-top: 2px solid #10B981; padding-top: 8px; margin-top: 8px;">
+                                    <label style="font-weight: 700;">Tổng phí dịch vụ</label>
+                                    <div class="value" style="font-size: 1.1rem; color: #10B981;" id="s2Total">16 triệu đ</div>
+                                </div>
                             </div>
-                            <div class="result-metric">
-                                <label>Tổng chi phí</label>
-                                <div class="value" id="scenario3Total">12 triệu đ</div>
+                            <!-- Kịch bản 3: Kém hơn 20% -->
+                            <div class="result-box" style="border-top: 3px solid #F59E0B;">
+                                <h4 style="color: #F59E0B; margin-bottom: 12px;">Kém hơn 20%</h4>
+                                <div class="result-metric">
+                                    <label>CPQL thực tế</label>
+                                    <div class="value" style="font-size: 1rem;" id="s3CPQL">1,563K đ</div>
+                                </div>
+                                <div class="result-metric">
+                                    <label>Định phí</label>
+                                    <div class="value" style="font-size: 1rem;" id="s3Fixed">10 triệu đ</div>
+                                </div>
+                                <div class="result-metric">
+                                    <label>Biến phí <strong>(8% × budget)</strong></label>
+                                    <div class="value" style="font-size: 1rem;" id="s3Variable">4 triệu đ</div>
+                                </div>
+                                <div class="result-metric" style="border-top: 2px solid #F59E0B; padding-top: 8px; margin-top: 8px;">
+                                    <label style="font-weight: 700;">Tổng phí dịch vụ</label>
+                                    <div class="value" style="font-size: 1.1rem; color: #F59E0B;" id="s3Total">14 triệu đ</div>
+                                </div>
                             </div>
                         </div>
+                    </div>
+
+                    <!-- ③ Bảng hoá đơn (kịch bản Đạt mục tiêu) -->
+                    <div style="margin-top: 24px;">
+                        <h3 style="margin-bottom: 16px; color: #1E293B; font-size: 1.1rem; display: flex; align-items: center; gap: 8px;">
+                            <span style="background: #1E293B; color: white; width: 28px; height: 28px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; font-size: 0.85rem;">3</span>
+                            Tổng chi phí thực tế — kịch bản Đạt mục tiêu (Hoá đơn)
+                        </h3>
+                        <table class="invoice-table">
+                            <tbody>
+                                <tr>
+                                    <td style="font-weight: 600;">Ngân sách quảng cáo</td>
+                                    <td style="text-align: right;" id="leadsInvBudget">50 triệu đ</td>
+                                </tr>
+                                <tr>
+                                    <td>Định phí dịch vụ</td>
+                                    <td style="text-align: right;" id="leadsInvFixed">10 triệu đ</td>
+                                </tr>
+                                <tr>
+                                    <td>Biến phí dịch vụ (10% × budget)</td>
+                                    <td style="text-align: right;" id="leadsInvVariable">5 triệu đ</td>
+                                </tr>
+                                <tr style="border-top: 1px solid #e2e8f0;">
+                                    <td style="font-weight: 600;">Phí dịch vụ trước thuế</td>
+                                    <td style="text-align: right; font-weight: 600;" id="leadsInvSubtotal">15 triệu đ</td>
+                                </tr>
+                                <tr>
+                                    <td>VAT (8%)</td>
+                                    <td style="text-align: right;" id="leadsInvVAT">1.2 triệu đ</td>
+                                </tr>
+                                <tr style="border-top: 2px solid var(--primary-color);">
+                                    <td style="font-weight: 700; font-size: 1.05rem; color: var(--primary-color);">Phí dịch vụ sau thuế</td>
+                                    <td style="text-align: right; font-weight: 700; font-size: 1.05rem; color: var(--primary-color);" id="leadsInvServiceTotal">16.2 triệu đ</td>
+                                </tr>
+                                <tr style="background: linear-gradient(135deg, #2B4A8E10, #4ECDC410); border-top: 2px solid var(--primary-color);">
+                                    <td style="font-weight: 700; font-size: 1.1rem; color: var(--primary-color);">TỔNG THỰC CHI</td>
+                                    <td style="text-align: right; font-weight: 700; font-size: 1.1rem; color: var(--primary-color);" id="leadsInvTotal">66.2 triệu đ</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <small style="color: var(--text-light); display: block; margin-top: 8px; font-style: italic;">* Tổng thực chi = Ngân sách quảng cáo + Phí dịch vụ sau thuế (VAT 8%). Hoá đơn tính theo kịch bản "Đạt mục tiêu".</small>
                     </div>
                 </div>
 
                 <!-- Awareness Solution Results -->
-                <div id="awarenessResults" class="results-grid">
-                    <div class="result-box">
-                        <h4>Thông tin giải pháp Nhận biết</h4>
-                        <p style="line-height: 1.6; color: var(--text-light);">Giải pháp Nhận biết thương hiệu giúp bạn xây dựng sự hiện diện mạnh mẽ trên các nền tảng digital. Chúng tôi sử dụng chiến lược content marketing, quảng cáo display, và các giải pháp sáng tạo để tăng nhận biết thương hiệu của bạn.</p>
+                <div id="awarenessResults" style="display: none;">
+                    <div class="results-grid visible">
+                        <div class="result-box">
+                            <h4>Thông tin giải pháp Nhận biết</h4>
+                            <p style="line-height: 1.6; color: var(--text-light);">Giải pháp Nhận biết thương hiệu giúp bạn xây dựng sự hiện diện mạnh mẽ trên các nền tảng digital. Chúng tôi sử dụng chiến lược content marketing, quảng cáo display, và các giải pháp sáng tạo để tăng nhận biết thương hiệu của bạn.</p>
+                        </div>
                     </div>
                 </div>
 
                 <!-- Comparison Table -->
+                <h3 style="text-align: center; margin-top: 40px; margin-bottom: 8px; font-size: 1.3rem; color: var(--text-dark);">So sánh chi phí & giá trị</h3>
+                <p style="text-align: center; color: var(--text-light); margin-bottom: 24px; font-size: 0.9rem;">Tổng chi phí thực tế khi chạy quảng cáo với mỗi phương án</p>
+                <div style="overflow-x: auto; -webkit-overflow-scrolling: touch;">
                 <table class="comparison-table">
                     <thead>
                         <tr>
-                            <th>Tiêu chí</th>
-                            <th>Pinpoint</th>
-                            <th>Freelancer/Agency nhỏ</th>
-                            <th>Inhouse</th>
+                            <th style="width: 22%; white-space: nowrap;">Tiêu chí</th>
+                            <th class="pinpoint-col" style="width: 26%; white-space: nowrap; text-align: center;">✦ Pinpoint</th>
+                            <th style="width: 26%; white-space: nowrap; text-align: center;">Freelancer /<br>Agency nhỏ</th>
+                            <th style="width: 26%; white-space: nowrap; text-align: center;">Inhouse<br>tự chạy</th>
                         </tr>
                     </thead>
                     <tbody>
+                        <!-- Section: CHI PHÍ -->
                         <tr>
-                            <td>Chi phí cố định</td>
-                            <td class="pinpoint"><span id="compareFixedFee">8 triệu đ</span></td>
-                            <td>~5-7 triệu/tháng</td>
-                            <td>~15-25 triệu/tháng</td>
+                            <td colspan="4" style="background: #F1F5F9; font-weight: 700; color: var(--primary-color); font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.5px; padding: 10px 16px;">Chi phí</td>
                         </tr>
                         <tr>
-                            <td>Chi phí biến đổi</td>
-                            <td class="pinpoint"><span id="compareVariableFee">5 triệu đ</span></td>
-                            <td>Không (không cam kết KPI)</td>
-                            <td>Không</td>
+                            <td>Thuế nền tảng QC</td>
+                            <td class="pinpoint"><span class="check-icon">Không mất</span><br><small style="color: var(--text-light);">Pinpoint là đối tác chính thức</small></td>
+                            <td><span class="cross-icon">10% ngân sách chi tiêu</span></td>
+                            <td><span class="cross-icon">10% ngân sách chi tiêu</span></td>
+                        </tr>
+                        <tr>
+                            <td>VAT</td>
+                            <td class="pinpoint"><span style="color: var(--secondary-color); font-weight: 600;">8% (có thể khấu trừ)</span></td>
+                            <td>Không có VAT</td>
+                            <td>Không có VAT</td>
+                        </tr>
+                        <tr>
+                            <td>Phí dịch vụ</td>
+                            <td class="pinpoint">Định phí <span id="compareFixedFee" style="font-weight: 600;">10 triệu đ</span> + Biến phí theo KPI<br><small style="color: var(--text-light);">Xem bảng ratecard phía trên</small></td>
+                            <td>Cố định 5-10 triệu/tháng<br><small style="color: var(--text-light);">Không gắn với hiệu quả</small></td>
+                            <td>Chi phí nhân sự ~20-30 triệu/tháng<br><small style="color: var(--text-light);">Lương + BHXH + phúc lợi</small></td>
+                        </tr>
+                        <tr>
+                            <td style="font-weight: 600;">Ví dụ: Budget 100 triệu</td>
+                            <td class="pinpoint" style="font-weight: 600; color: var(--primary-color);" id="compareExample">
+                                <span id="compareTotalPinpoint">~122 triệu đ</span>
+                                <br><small style="color: var(--text-light); font-weight: 400;">100M QC + 20M phí DV + 1.6M VAT</small>
+                            </td>
+                            <td style="font-weight: 600; color: #DC2626;">
+                                ~117 triệu đ
+                                <br><small style="color: var(--text-light); font-weight: 400;">100M QC + 10M thuế NT + 7M phí</small>
+                            </td>
+                            <td style="font-weight: 600; color: #DC2626;">
+                                ~135 triệu đ
+                                <br><small style="color: var(--text-light); font-weight: 400;">100M QC + 10M thuế NT + 25M nhân sự</small>
+                            </td>
+                        </tr>
+
+                        <!-- Section: GIÁ TRỊ -->
+                        <tr>
+                            <td colspan="4" style="background: #F1F5F9; font-weight: 700; color: var(--primary-color); font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.5px; padding: 10px 16px;">Giá trị nhận được</td>
+                        </tr>
+                        <tr>
+                            <td>Insights ngành</td>
+                            <td class="pinpoint"><span class="check-icon">✓ Có</span><br><small style="color: var(--text-light);">Data từ 300+ KH, benchmark ngành</small></td>
+                            <td><span class="cross-icon">✗ Không có</span></td>
+                            <td><span style="color: var(--accent);">⚠ Tự thu thập</span><br><small style="color: var(--text-light);">Hạn chế do thiếu data ngành</small></td>
+                        </tr>
+                        <tr>
+                            <td>Hỗ trợ từ nền tảng</td>
+                            <td class="pinpoint"><span class="check-icon">✓ Đầy đủ</span><br><small style="color: var(--text-light);">Tính năng mới, beta features, rep hỗ trợ</small></td>
+                            <td><span class="cross-icon">✗ Không có</span></td>
+                            <td><span class="cross-icon">✗ Không có</span></td>
                         </tr>
                         <tr>
                             <td>Cam kết KPI</td>
-                            <td class="pinpoint"><span class="check-icon">✓ Có</span></td>
-                            <td><span class="cross-icon">✗ Không</span></td>
-                            <td><span class="cross-icon">✗ Không</span></td>
+                            <td class="pinpoint"><span class="check-icon">✓ Có cam kết</span><br><small style="color: var(--text-light);">Biến phí gắn với kết quả</small></td>
+                            <td><span class="cross-icon">✗ Không cam kết</span></td>
+                            <td><span class="cross-icon">✗ Không cam kết</span></td>
                         </tr>
                         <tr>
                             <td>Đa nền tảng</td>
@@ -2037,31 +2306,159 @@
                             <td><span style="color: var(--accent);">⚠ 2-3 nền tảng</span></td>
                         </tr>
                         <tr>
-                            <td>Công nghệ AI (PAXY)</td>
-                            <td class="pinpoint"><span class="check-icon">✓ Có</span></td>
-                            <td><span class="cross-icon">✗ Không</span></td>
-                            <td><span class="cross-icon">✗ Không</span></td>
+                            <td>Chất lượng & kiểm soát</td>
+                            <td class="pinpoint"><span class="check-icon">✓ Đội ngũ chuyên nghiệp</span><br><small style="color: var(--text-light);">Đảm bảo hiệu quả và dịch vụ như thống nhất</small></td>
+                            <td><span class="cross-icon">✗ Khó kiểm soát</span><br><small style="color: var(--text-light);">Phụ thuộc cá nhân, thiếu quy trình</small></td>
+                            <td><span style="color: var(--accent);">⚠ Tốn công xây dựng</span><br><small style="color: var(--text-light);">Tuyển, đào tạo, duy trì đội ngũ</small></td>
                         </tr>
                         <tr>
-                            <td>Báo cáo chuyên sâu</td>
-                            <td class="pinpoint"><span class="check-icon">✓ Có</span></td>
-                            <td><span style="color: var(--accent);">⚠ Cơ bản</span></td>
-                            <td><span style="color: var(--accent);">⚠ Tự làm</span></td>
-                        </tr>
-                        <tr>
-                            <td>Tư vấn chiến lược</td>
-                            <td class="pinpoint"><span class="check-icon">✓ Có</span></td>
+                            <td>Công nghệ AI</td>
+                            <td class="pinpoint"><span class="check-icon">✓ PAXY AI</span></td>
                             <td><span class="cross-icon">✗ Không</span></td>
-                            <td><span style="color: var(--accent);">⚠ Hạn chế</span></td>
-                        </tr>
-                        <tr>
-                            <td>Rủi ro</td>
-                            <td class="pinpoint">Thấp (cam kết KPI)</td>
-                            <td>Cao</td>
-                            <td>Trung bình</td>
+                            <td><span class="cross-icon">✗ Không</span></td>
                         </tr>
                     </tbody>
                 </table>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Meta Healthcheck Section -->
+    <section id="healthcheck" style="background: linear-gradient(135deg, #FFF7ED, #FEF3C7); padding: 80px 0;">
+        <div class="container">
+            <div style="text-align: center; margin-bottom: 8px;">
+                <span style="display: inline-block; background: #F97316; color: white; padding: 6px 18px; border-radius: 20px; font-size: 0.8rem; font-weight: 600;">Miễn phí — Giới hạn 50 doanh nghiệp/tháng</span>
+            </div>
+            <h2 style="text-align: center;">🩺 Khám sức khoẻ tài khoản Meta của bạn</h2>
+            <p class="subtitle" style="text-align: center;">Nhận ngay báo cáo đánh giá chất lượng tài khoản quảng cáo từ hệ thống AI và chuyên gia từ PMAX.<br>Phát hiện lãng phí ngân sách, cơ hội tối ưu, và đề xuất cải thiện cụ thể.</p>
+
+            <!-- Step indicator -->
+            <div style="display: flex; justify-content: center; gap: 40px; margin: 32px 0 40px; flex-wrap: wrap;">
+                <div id="hcStep1Indicator" style="display: flex; align-items: center; gap: 8px;">
+                    <span id="hcStep1Badge" style="width: 32px; height: 32px; border-radius: 50%; background: #F97316; color: white; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 0.85rem;">1</span>
+                    <span style="font-weight: 600; color: var(--text-dark);">Thông tin doanh nghiệp</span>
+                </div>
+                <div id="hcStep2Indicator" style="display: flex; align-items: center; gap: 8px; opacity: 0.4;">
+                    <span id="hcStep2Badge" style="width: 32px; height: 32px; border-radius: 50%; background: #CBD5E1; color: white; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 0.85rem;">2</span>
+                    <span style="font-weight: 600; color: var(--text-light);">Upload dữ liệu</span>
+                </div>
+                <div id="hcStep3Indicator" style="display: flex; align-items: center; gap: 8px; opacity: 0.4;">
+                    <span id="hcStep3Badge" style="width: 32px; height: 32px; border-radius: 50%; background: #CBD5E1; color: white; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 0.85rem;">3</span>
+                    <span style="font-weight: 600; color: var(--text-light);">Hoàn tất</span>
+                </div>
+            </div>
+
+            <!-- Step 1: Company Info Form -->
+            <div id="hcFormStep1" style="max-width: 600px; margin: 0 auto;">
+                <div style="background: white; border-radius: 16px; padding: 32px; box-shadow: 0 4px 20px rgba(0,0,0,0.08);">
+                    <h3 style="margin-bottom: 20px; font-size: 1.1rem; color: var(--text-dark);">Thông tin doanh nghiệp</h3>
+                    <div style="display: flex; flex-direction: column; gap: 16px;">
+                        <div>
+                            <label style="display: block; font-weight: 600; margin-bottom: 6px; font-size: 0.9rem; color: var(--text-dark);">Tên công ty *</label>
+                            <input id="hcCompany" type="text" placeholder="VD: Công ty ABC" required style="width: 100%; padding: 12px 16px; border: 1px solid #E2E8F0; border-radius: 10px; font-size: 0.95rem; box-sizing: border-box;">
+                        </div>
+                        <div>
+                            <label style="display: block; font-weight: 600; margin-bottom: 6px; font-size: 0.9rem; color: var(--text-dark);">Website *</label>
+                            <input id="hcWebsite" type="url" placeholder="https://yoursite.com" required style="width: 100%; padding: 12px 16px; border: 1px solid #E2E8F0; border-radius: 10px; font-size: 0.95rem; box-sizing: border-box;">
+                        </div>
+                        <div>
+                            <label style="display: block; font-weight: 600; margin-bottom: 6px; font-size: 0.9rem; color: var(--text-dark);">Ngành hàng *</label>
+                            <select id="hcIndustry" required style="width: 100%; padding: 12px 16px; border: 1px solid #E2E8F0; border-radius: 10px; font-size: 0.95rem; background: white; box-sizing: border-box;">
+                                <option value="">Chọn ngành hàng</option>
+                                <option value="Thương mại điện tử">Thương mại điện tử</option>
+                                <option value="F&B">F&B</option>
+                                <option value="Giáo dục">Giáo dục</option>
+                                <option value="Bất động sản">Bất động sản</option>
+                                <option value="Thời trang">Thời trang</option>
+                                <option value="Sức khoẻ & Làm đẹp">Sức khoẻ & Làm đẹp</option>
+                                <option value="Công nghệ / SaaS">Công nghệ / SaaS</option>
+                                <option value="Dịch vụ tài chính">Dịch vụ tài chính</option>
+                                <option value="Khác">Khác</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label style="display: block; font-weight: 600; margin-bottom: 6px; font-size: 0.9rem; color: var(--text-dark);">Mục tiêu chạy quảng cáo *</label>
+                            <select id="hcGoal" required style="width: 100%; padding: 12px 16px; border: 1px solid #E2E8F0; border-radius: 10px; font-size: 0.95rem; background: white; box-sizing: border-box;">
+                                <option value="">Chọn mục tiêu</option>
+                                <option value="Tăng doanh số bán hàng">Tăng doanh số bán hàng</option>
+                                <option value="Thu thập khách hàng tiềm năng (Leads)">Thu thập khách hàng tiềm năng (Leads)</option>
+                                <option value="Tăng nhận biết thương hiệu">Tăng nhận biết thương hiệu</option>
+                                <option value="Tăng lượt truy cập website">Tăng lượt truy cập website</option>
+                                <option value="Kết hợp nhiều mục tiêu">Kết hợp nhiều mục tiêu</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label style="display: block; font-weight: 600; margin-bottom: 6px; font-size: 0.9rem; color: var(--text-dark);">Ngân sách trung bình/tháng *</label>
+                            <select id="hcBudget" required style="width: 100%; padding: 12px 16px; border: 1px solid #E2E8F0; border-radius: 10px; font-size: 0.95rem; background: white; box-sizing: border-box;">
+                                <option value="">Chọn ngân sách</option>
+                                <option value="Dưới 20 triệu">Dưới 20 triệu</option>
+                                <option value="20 - 50 triệu">20 - 50 triệu</option>
+                                <option value="50 - 100 triệu">50 - 100 triệu</option>
+                                <option value="100 - 300 triệu">100 - 300 triệu</option>
+                                <option value="Trên 300 triệu">Trên 300 triệu</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label style="display: block; font-weight: 600; margin-bottom: 6px; font-size: 0.9rem; color: var(--text-dark);">Painpoint chính khi chạy quảng cáo</label>
+                            <textarea id="hcPainpoint" placeholder="VD: Chi phí quảng cáo tăng nhưng hiệu quả giảm, không biết tối ưu thế nào..." rows="3" style="width: 100%; padding: 12px 16px; border: 1px solid #E2E8F0; border-radius: 10px; font-size: 0.95rem; resize: vertical; font-family: inherit; box-sizing: border-box;"></textarea>
+                        </div>
+                        <div>
+                            <label style="display: block; font-weight: 600; margin-bottom: 6px; font-size: 0.9rem; color: var(--text-dark);">Email nhận báo cáo *</label>
+                            <input id="hcEmail" type="email" placeholder="email@company.com" required style="width: 100%; padding: 12px 16px; border: 1px solid #E2E8F0; border-radius: 10px; font-size: 0.95rem; box-sizing: border-box;">
+                        </div>
+                    </div>
+                    <button id="hcSubmitInfo" onclick="submitHealthcheckInfo()" style="width: 100%; margin-top: 24px; padding: 14px; background: #F97316; color: white; border: none; border-radius: 10px; font-size: 1rem; font-weight: 600; cursor: pointer; transition: all 0.3s;">Tiếp tục → Upload dữ liệu</button>
+                </div>
+            </div>
+
+            <!-- Step 2: CSV Upload -->
+            <div id="hcFormStep2" style="max-width: 600px; margin: 0 auto; display: none;">
+                <div style="background: white; border-radius: 16px; padding: 32px; box-shadow: 0 4px 20px rgba(0,0,0,0.08);">
+                    <h3 style="margin-bottom: 8px; font-size: 1.1rem; color: var(--text-dark);">Upload dữ liệu quảng cáo</h3>
+                    <p style="color: var(--text-light); font-size: 0.9rem; margin-bottom: 20px;">Tải xuống báo cáo từ Meta Ads Manager (dạng CSV) và upload lên đây. Chúng tôi sẽ phân tích và gửi báo cáo đến email của bạn.</p>
+
+                    <div style="margin-bottom: 20px; padding: 16px; background: #F0F9FF; border: 1px solid #BAE6FD; border-radius: 10px;">
+                        <p style="font-weight: 600; color: #0369A1; margin-bottom: 12px; font-size: 0.9rem;">📋 Hướng dẫn lấy file CSV từ Meta Ads Manager:</p>
+                        <ol style="color: #0369A1; font-size: 0.85rem; line-height: 1.8; padding-left: 20px; margin: 0 0 16px 0;">
+                            <li>Vào <strong>Meta Ads Manager</strong> → Chọn tài khoản quảng cáo</li>
+                            <li>Chọn khoảng thời gian: <strong>6 tháng đến 1 năm gần nhất</strong></li>
+                            <li>Nhấn nút <strong>Export</strong> (biểu tượng ↓ góc phải) → Chọn <strong>"Export as .csv"</strong></li>
+                            <li>Upload file CSV vừa tải ở bên dưới</li>
+                        </ol>
+                        <!-- Meta Ads Manager Export Screenshot -->
+                        <img src="meta-ads-export-guide.png" alt="Hướng dẫn Export CSV từ Meta Ads Manager" style="width: 100%; border-radius: 8px; border: 1px solid #E2E8F0;">
+                    </div>
+
+                    <div id="hcDropZone" style="border: 2px dashed #CBD5E1; border-radius: 12px; padding: 40px 20px; text-align: center; cursor: pointer; transition: all 0.3s; background: #FAFAFA;" onclick="document.getElementById('hcFileInput').click()">
+                        <div id="hcUploadIcon" style="font-size: 2.5rem; margin-bottom: 12px;">📁</div>
+                        <p id="hcUploadText" style="font-weight: 600; color: var(--text-dark); margin-bottom: 4px;">Kéo thả file CSV hoặc nhấn để chọn</p>
+                        <p id="hcUploadSub" style="font-size: 0.85rem; color: var(--text-light);">Chấp nhận file .csv, tối đa 10MB</p>
+                        <input id="hcFileInput" type="file" accept=".csv" style="display: none;" onchange="handleCSVUpload(this)">
+                    </div>
+
+                    <div id="hcFileInfo" style="display: none; margin-top: 16px; padding: 12px 16px; background: #D1FAE5; border: 1px solid #6EE7B7; border-radius: 10px; display: none;">
+                        <span style="font-weight: 600; color: #065F46;" id="hcFileName"></span>
+                        <span style="color: #065F46; font-size: 0.85rem;" id="hcFileSize"></span>
+                    </div>
+
+                    <div style="display: flex; gap: 12px; margin-top: 24px;">
+                        <button onclick="goBackToStep1()" style="flex: 1; padding: 14px; background: white; color: var(--text-dark); border: 1px solid #E2E8F0; border-radius: 10px; font-size: 0.95rem; font-weight: 600; cursor: pointer;">← Quay lại</button>
+                        <button id="hcSubmitCSV" onclick="submitHealthcheck()" style="flex: 2; padding: 14px; background: #F97316; color: white; border: none; border-radius: 10px; font-size: 1rem; font-weight: 600; cursor: pointer; opacity: 0.5; pointer-events: none;" disabled>Gửi để nhận báo cáo →</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Step 3: Success -->
+            <div id="hcFormStep3" style="max-width: 600px; margin: 0 auto; display: none;">
+                <div style="background: white; border-radius: 16px; padding: 48px 32px; box-shadow: 0 4px 20px rgba(0,0,0,0.08); text-align: center;">
+                    <div style="font-size: 3rem; margin-bottom: 16px;">✅</div>
+                    <h3 style="color: #065F46; margin-bottom: 12px;">Đã gửi thành công!</h3>
+                    <p style="color: var(--text-light); line-height: 1.6;">Chuyên gia PMAX sẽ phân tích tài khoản của bạn và gửi báo cáo đánh giá chi tiết qua email trong vòng <strong>24-48 giờ</strong> làm việc.</p>
+                    <div style="margin-top: 24px; padding: 16px; background: #F0FDF4; border-radius: 10px; border: 1px solid #BBF7D0;">
+                        <p style="font-size: 0.9rem; color: #166534;">📧 Báo cáo sẽ được gửi đến: <strong id="hcConfirmEmail"></strong></p>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
@@ -2071,7 +2468,7 @@
         <div class="container">
             <h2>Sẵn sàng tăng trưởng doanh thu?</h2>
             <p>Hãy liên hệ với chúng tôi ngay hôm nay để nhận tư vấn miễn phí và khám phá cách Pinpoint có thể giúp doanh nghiệp của bạn.</p>
-            <button class="btn-primary" style="background: white; color: var(--primary);">Liên hệ tư vấn ngay →</button>
+            <button class="btn-primary" style="background: white; color: var(--primary);" onclick="document.getElementById('contactForm').scrollIntoView({behavior:'smooth',block:'center'});setTimeout(()=>document.getElementById('cfName').focus(),600);">Liên hệ tư vấn ngay →</button>
         </div>
     </section>
 
@@ -2098,10 +2495,10 @@
                 </div>
                 <div class="footer-column">
                     <h4>Công ty</h4>
-                    <a href="#">Giới thiệu</a>
-                    <a href="#">Liên hệ</a>
-                    <a href="#">Blog</a>
-                    <a href="#">Tuyển dụng</a>
+                    <a href="#about">Giới thiệu</a>
+                    <a href="#hero" onclick="document.getElementById('contactForm').scrollIntoView({behavior:'smooth',block:'center'});return false;">Liên hệ</a>
+                    <a href="https://pmax.com.vn/blog" target="_blank">Blog</a>
+                    <a href="https://pmax.com.vn/tuyen-dung" target="_blank">Tuyển dụng</a>
                 </div>
                 <div class="footer-column">
                     <h4>Liên hệ</h4>
@@ -2186,13 +2583,22 @@
             const cpl = parseFloat(document.getElementById('cplInput').value) || 500000;
             const fixedFee = getFixedFee(budget);
 
-            // SALES calculation
+            // Helper: format K or triệu
+            function formatK(amount) {
+                if (amount >= 1e6) return formatVND(Math.round(amount / 1e6));
+                return Math.round(amount / 1000).toLocaleString() + 'K đ';
+            }
+
+            // ============ SALES calculation ============
             const revenue = budget * roas;
             const grossProfit = revenue - budget;
-            const variableFee = 0.1 * (revenue - budget); // 10% of (revenue - budget), NOT 10% of budget
+            const variableFee = 0.1 * grossProfit; // 10% of profit
             const totalServiceFee = fixedFee + variableFee;
-            const netProfit = revenue - budget - totalServiceFee;
-            const roi = (netProfit / (budget + totalServiceFee)) * 100;
+            const salesVAT = totalServiceFee * 0.08;
+            const salesServiceWithVAT = totalServiceFee + salesVAT;
+            const salesTotalSpend = budget + salesServiceWithVAT;
+            const netProfit = grossProfit - salesServiceWithVAT;
+            const roi = (netProfit / salesTotalSpend) * 100;
 
             document.getElementById('salesBudget').textContent = formatVND(Math.round(budget / 1e6));
             document.getElementById('displayRoas').textContent = roas.toFixed(1) + 'x';
@@ -2200,38 +2606,83 @@
             document.getElementById('salesGrossProfit').textContent = formatVND(Math.round(grossProfit / 1e6));
             document.getElementById('salesFixedFee').textContent = formatVND(Math.round(fixedFee / 1e6));
             document.getElementById('salesVariableFee').textContent = formatVND(Math.round(variableFee / 1e6));
-            document.getElementById('salesTotalFee').textContent = formatVND(Math.round(totalServiceFee / 1e6));
             document.getElementById('salesROI').textContent = roi.toFixed(0) + '%';
 
-            // LEADS calculation
+            // Sales invoice
+            document.getElementById('salesInvBudget').textContent = formatVND(Math.round(budget / 1e6));
+            document.getElementById('salesInvFixed').textContent = formatVND(Math.round(fixedFee / 1e6));
+            document.getElementById('salesInvVariable').textContent = formatVND(Math.round(variableFee / 1e6));
+            document.getElementById('salesInvSubtotal').textContent = formatVND(Math.round(totalServiceFee / 1e6));
+            document.getElementById('salesInvVAT').textContent = formatVND(Math.round(salesVAT / 1e6));
+            document.getElementById('salesInvServiceTotal').textContent = formatVND(Math.round(salesServiceWithVAT / 1e6));
+            document.getElementById('salesInvTotal').textContent = formatVND(Math.round(salesTotalSpend / 1e6));
+
+            // ============ LEADS calculation ============
             const totalLeads = Math.round(budget / cpl);
             const qualifiedLeads = Math.round(totalLeads * 0.4);
-            const costPerQualifiedLead = cpl / 0.4;
+            const cpql = cpl / 0.4; // Chi phí KH chất lượng = CPL / 40%
 
-            document.getElementById('totalLeads').textContent = totalLeads;
-            document.getElementById('calculatedCPL').textContent = formatVND(cpl / 1e6);
-            document.getElementById('qualifiedLeads').textContent = qualifiedLeads;
+            // 3 kịch bản dựa trên hiệu quả so với CPQL target
+            const cpqlTarget = cpql;                     // Đạt mục tiêu
+            const cpqlBetter = cpql * 0.8;               // Tốt hơn 20% (CPQL thấp hơn 20%)
+            const cpqlWorse = cpql * 1.2;                // Kém hơn 20% (CPQL cao hơn 20%)
 
-            // Leads scenarios
-            const scenario1Var = budget * 0.1;
-            const scenario2Var = budget * 0.12;
-            const scenario3Var = budget * 0.08;
+            const s1Var = budget * 0.10;  // Đạt mục tiêu: 10%
+            const s2Var = budget * 0.12;  // Tốt hơn 20%: 12%
+            const s3Var = budget * 0.08;  // Kém hơn 20%: 8%
 
-            document.getElementById('scenario1Fixed').textContent = formatVND(Math.round(fixedFee / 1e6));
-            document.getElementById('scenario1Variable').textContent = formatVND(Math.round(scenario1Var / 1e6));
-            document.getElementById('scenario1Total').textContent = formatVND(Math.round((fixedFee + scenario1Var) / 1e6));
+            const s1Total = fixedFee + s1Var;
+            const s2Total = fixedFee + s2Var;
+            const s3Total = fixedFee + s3Var;
 
-            document.getElementById('scenario2Fixed').textContent = formatVND(Math.round(fixedFee / 1e6));
-            document.getElementById('scenario2Variable').textContent = formatVND(Math.round(scenario2Var / 1e6));
-            document.getElementById('scenario2Total').textContent = formatVND(Math.round((fixedFee + scenario2Var) / 1e6));
+            // Kết quả dự kiến
+            document.getElementById('leadsBudget').textContent = formatVND(Math.round(budget / 1e6));
+            document.getElementById('calculatedCPL').textContent = formatK(cpl);
+            document.getElementById('cpqlValue').textContent = formatK(cpql);
+            document.getElementById('totalLeads').textContent = totalLeads.toLocaleString();
+            document.getElementById('qualifiedLeads').textContent = qualifiedLeads.toLocaleString();
 
-            document.getElementById('scenario3Fixed').textContent = formatVND(Math.round(fixedFee / 1e6));
-            document.getElementById('scenario3Variable').textContent = formatVND(Math.round(scenario3Var / 1e6));
-            document.getElementById('scenario3Total').textContent = formatVND(Math.round((fixedFee + scenario3Var) / 1e6));
+            // Kịch bản 1: Đạt mục tiêu
+            document.getElementById('s1CPQL').textContent = formatK(cpqlTarget);
+            document.getElementById('s1Fixed').textContent = formatVND(Math.round(fixedFee / 1e6));
+            document.getElementById('s1Variable').textContent = formatVND(Math.round(s1Var / 1e6));
+            document.getElementById('s1Total').textContent = formatVND(Math.round(s1Total / 1e6));
+
+            // Kịch bản 2: Tốt hơn 20%
+            document.getElementById('s2CPQL').textContent = formatK(cpqlBetter);
+            document.getElementById('s2Fixed').textContent = formatVND(Math.round(fixedFee / 1e6));
+            document.getElementById('s2Variable').textContent = formatVND(Math.round(s2Var / 1e6));
+            document.getElementById('s2Total').textContent = formatVND(Math.round(s2Total / 1e6));
+
+            // Kịch bản 3: Kém hơn 20%
+            document.getElementById('s3CPQL').textContent = formatK(cpqlWorse);
+            document.getElementById('s3Fixed').textContent = formatVND(Math.round(fixedFee / 1e6));
+            document.getElementById('s3Variable').textContent = formatVND(Math.round(s3Var / 1e6));
+            document.getElementById('s3Total').textContent = formatVND(Math.round(s3Total / 1e6));
+
+            // Leads invoice (kịch bản Đạt mục tiêu)
+            const leadsVAT = s1Total * 0.08;
+            const leadsServiceWithVAT = s1Total + leadsVAT;
+            const leadsTotalSpend = budget + leadsServiceWithVAT;
+
+            document.getElementById('leadsInvBudget').textContent = formatVND(Math.round(budget / 1e6));
+            document.getElementById('leadsInvFixed').textContent = formatVND(Math.round(fixedFee / 1e6));
+            document.getElementById('leadsInvVariable').textContent = formatVND(Math.round(s1Var / 1e6));
+            document.getElementById('leadsInvSubtotal').textContent = formatVND(Math.round(s1Total / 1e6));
+            document.getElementById('leadsInvVAT').textContent = formatVND(Math.round(leadsVAT / 1e6));
+            document.getElementById('leadsInvServiceTotal').textContent = formatVND(Math.round(leadsServiceWithVAT / 1e6));
+            document.getElementById('leadsInvTotal').textContent = formatVND(Math.round(leadsTotalSpend / 1e6));
 
             // Update comparison table
+            // Update comparison table
             document.getElementById('compareFixedFee').textContent = formatVND(Math.round(fixedFee / 1e6));
-            document.getElementById('compareVariableFee').textContent = formatVND(Math.round(variableFee / 1e6));
+            // Calculate Pinpoint example for 100M budget
+            const exFixedFee = getFixedFee(100e6); // 100M => tier Chuẩn = 10M
+            const exVarFee = 100e6 * 0.1; // 10% budget for leads scenario
+            const exServiceFee = exFixedFee + exVarFee;
+            const exVAT = exServiceFee * 0.08;
+            const exTotal = 100e6 + exServiceFee + exVAT;
+            document.getElementById('compareTotalPinpoint').textContent = '~' + formatVND(Math.round(exTotal / 1e6));
         }
 
         // Update on any input change
@@ -2247,18 +2698,15 @@
                 document.querySelectorAll('.solution-tab').forEach(t => t.classList.remove('active'));
                 this.classList.add('active');
 
-                document.querySelectorAll('.results-grid, #leadsScenarios').forEach(grid => grid.style.display = 'none');
-                document.querySelectorAll('.results-grid').forEach(grid => grid.classList.remove('visible'));
+                // Hide all solution containers
+                document.getElementById('salesResults').style.display = 'none';
+                document.getElementById('leadsResults').style.display = 'none';
+                document.getElementById('awarenessResults').style.display = 'none';
 
                 const solution = this.dataset.solution;
                 const resultsDiv = document.getElementById(solution + 'Results');
                 if (resultsDiv) {
-                    resultsDiv.style.display = 'grid';
-                    resultsDiv.classList.add('visible');
-                }
-
-                if (solution === 'leads') {
-                    document.getElementById('leadsScenarios').style.display = 'block';
+                    resultsDiv.style.display = 'block';
                 }
             });
         });
@@ -2319,16 +2767,227 @@
 
         statsObserver.observe(statsSection);
 
-        // Form submission
-        document.getElementById('contactForm').addEventListener('submit', (e) => {
+        // Form submission → Google Sheets via Apps Script
+        // HƯỚNG DẪN: Deploy Google Apps Script Web App, paste URL vào biến GOOGLE_SCRIPT_URL bên dưới
+        const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyXgQiXidTfJT-L-lHvMNqYSQTCxJr_esa0wjKl-50XCSLhs9FAXSkuQAklAQcYaiby/exec';
+
+        document.getElementById('contactForm').addEventListener('submit', async (e) => {
             e.preventDefault();
+            const btn = document.getElementById('cfSubmitBtn');
             const successMsg = document.getElementById('formSuccess');
-            successMsg.style.display = 'block';
-            document.getElementById('contactForm').reset();
-            setTimeout(() => {
-                successMsg.style.display = 'none';
-            }, 5000);
+            const originalText = btn.textContent;
+
+            const formData = {
+                name: document.getElementById('cfName').value.trim(),
+                email: document.getElementById('cfEmail').value.trim(),
+                phone: document.getElementById('cfPhone').value.trim(),
+                website: document.getElementById('cfWebsite').value.trim(),
+                budget: document.getElementById('cfBudget').value,
+                timestamp: new Date().toLocaleString('vi-VN'),
+                source: window.location.href
+            };
+
+            btn.textContent = 'Đang gửi...';
+            btn.disabled = true;
+
+            try {
+                if (GOOGLE_SCRIPT_URL) {
+                    await fetch(GOOGLE_SCRIPT_URL, {
+                        method: 'POST',
+                        mode: 'no-cors',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(formData)
+                    });
+                }
+                successMsg.style.display = 'block';
+                document.getElementById('contactForm').reset();
+                setTimeout(() => { successMsg.style.display = 'none'; }, 5000);
+            } catch (err) {
+                console.error('Form submit error:', err);
+                successMsg.style.display = 'block';
+                document.getElementById('contactForm').reset();
+            } finally {
+                btn.textContent = originalText;
+                btn.disabled = false;
+            }
         });
+        // ============ HEALTHCHECK FUNCTIONS ============
+        let hcCSVFile = null;
+        let hcCompanyData = {};
+
+        function submitHealthcheckInfo() {
+            const company = document.getElementById('hcCompany').value.trim();
+            const website = document.getElementById('hcWebsite').value.trim();
+            const industry = document.getElementById('hcIndustry').value;
+            const goal = document.getElementById('hcGoal').value;
+            const budget = document.getElementById('hcBudget').value;
+            const email = document.getElementById('hcEmail').value.trim();
+
+            if (!company || !website || !industry || !goal || !budget || !email) {
+                alert('Vui lòng điền đầy đủ các trường có dấu *');
+                return;
+            }
+
+            hcCompanyData = {
+                company, website, industry, goal, budget,
+                painpoint: document.getElementById('hcPainpoint').value.trim(),
+                email
+            };
+
+            // Show step 2
+            document.getElementById('hcFormStep1').style.display = 'none';
+            document.getElementById('hcFormStep2').style.display = 'block';
+
+            // Update indicators
+            document.getElementById('hcStep1Indicator').style.opacity = '0.4';
+            document.getElementById('hcStep1Badge').style.background = '#10B981';
+            document.getElementById('hcStep1Badge').textContent = '✓';
+            document.getElementById('hcStep2Indicator').style.opacity = '1';
+            document.getElementById('hcStep2Badge').style.background = '#F97316';
+        }
+
+        function goBackToStep1() {
+            document.getElementById('hcFormStep1').style.display = 'block';
+            document.getElementById('hcFormStep2').style.display = 'none';
+
+            document.getElementById('hcStep1Indicator').style.opacity = '1';
+            document.getElementById('hcStep1Badge').style.background = '#F97316';
+            document.getElementById('hcStep1Badge').textContent = '1';
+            document.getElementById('hcStep2Indicator').style.opacity = '0.4';
+            document.getElementById('hcStep2Badge').style.background = '#CBD5E1';
+        }
+
+        function handleCSVUpload(input) {
+            const file = input.files[0];
+            if (!file) return;
+
+            if (!file.name.endsWith('.csv')) {
+                alert('Vui lòng chọn file CSV');
+                input.value = '';
+                return;
+            }
+
+            if (file.size > 10 * 1024 * 1024) {
+                alert('File quá lớn. Tối đa 10MB.');
+                input.value = '';
+                return;
+            }
+
+            hcCSVFile = file;
+            const sizeKB = (file.size / 1024).toFixed(1);
+
+            document.getElementById('hcUploadIcon').textContent = '✅';
+            document.getElementById('hcUploadText').textContent = file.name;
+            document.getElementById('hcUploadSub').textContent = sizeKB + ' KB';
+            document.getElementById('hcDropZone').style.borderColor = '#10B981';
+            document.getElementById('hcDropZone').style.background = '#F0FDF4';
+
+            // Enable submit button
+            const submitBtn = document.getElementById('hcSubmitCSV');
+            submitBtn.disabled = false;
+            submitBtn.style.opacity = '1';
+            submitBtn.style.pointerEvents = 'auto';
+        }
+
+        // Drag and drop support
+        const dropZone = document.getElementById('hcDropZone');
+        if (dropZone) {
+            dropZone.addEventListener('dragover', (e) => {
+                e.preventDefault();
+                dropZone.style.borderColor = '#F97316';
+                dropZone.style.background = '#FFF7ED';
+            });
+            dropZone.addEventListener('dragleave', () => {
+                dropZone.style.borderColor = '#CBD5E1';
+                dropZone.style.background = '#FAFAFA';
+            });
+            dropZone.addEventListener('drop', (e) => {
+                e.preventDefault();
+                const file = e.dataTransfer.files[0];
+                if (file) {
+                    document.getElementById('hcFileInput').files = e.dataTransfer.files;
+                    handleCSVUpload(document.getElementById('hcFileInput'));
+                }
+            });
+        }
+
+        // Healthcheck dùng chung Apps Script URL — tự phân biệt bằng field action
+        const HEALTHCHECK_SCRIPT_URL = GOOGLE_SCRIPT_URL; // Dùng chung 1 endpoint
+
+        async function submitHealthcheck() {
+            if (!hcCSVFile || !hcCompanyData.company) return;
+
+            const btn = document.getElementById('hcSubmitCSV');
+            btn.textContent = 'Đang gửi...';
+            btn.disabled = true;
+
+            // Read CSV file as base64
+            const csvBase64 = await new Promise((resolve) => {
+                const reader = new FileReader();
+                reader.onload = () => resolve(reader.result.split(',')[1]);
+                reader.readAsDataURL(hcCSVFile);
+            });
+
+            const payload = {
+                action: 'healthcheck',
+                company: hcCompanyData.company,
+                website: hcCompanyData.website,
+                industry: hcCompanyData.industry,
+                goal: hcCompanyData.goal,
+                budget: hcCompanyData.budget,
+                painpoint: hcCompanyData.painpoint || 'Không ghi',
+                email: hcCompanyData.email,
+                csvFileName: hcCSVFile.name,
+                csvBase64: csvBase64,
+                timestamp: new Date().toLocaleString('vi-VN')
+            };
+
+            try {
+                if (HEALTHCHECK_SCRIPT_URL) {
+                    await fetch(HEALTHCHECK_SCRIPT_URL, {
+                        method: 'POST',
+                        mode: 'no-cors',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(payload)
+                    });
+                } else {
+                    // Fallback: mailto nếu chưa setup Apps Script
+                    const subject = '[Healthcheck]_' + hcCompanyData.company;
+                    const body = [
+                        'THÔNG TIN DOANH NGHIỆP',
+                        '========================',
+                        'Tên công ty: ' + hcCompanyData.company,
+                        'Website: ' + hcCompanyData.website,
+                        'Ngành hàng: ' + hcCompanyData.industry,
+                        'Mục tiêu: ' + hcCompanyData.goal,
+                        'Ngân sách TB/tháng: ' + hcCompanyData.budget,
+                        'Painpoint: ' + (hcCompanyData.painpoint || 'Không ghi'),
+                        'Email KH: ' + hcCompanyData.email,
+                        '',
+                        '(File CSV: ' + hcCSVFile.name + ' — cần gửi kèm thủ công)'
+                    ].join('\n');
+                    window.open('mailto:tung.nguyen@pinpoint.com.vn?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(body), '_blank');
+                }
+            } catch (err) {
+                console.error('Healthcheck submit error:', err);
+            }
+
+            // Show step 3
+            document.getElementById('hcFormStep2').style.display = 'none';
+            document.getElementById('hcFormStep3').style.display = 'block';
+            document.getElementById('hcConfirmEmail').textContent = hcCompanyData.email;
+
+            // Update indicators
+            document.getElementById('hcStep2Indicator').style.opacity = '0.4';
+            document.getElementById('hcStep2Badge').style.background = '#10B981';
+            document.getElementById('hcStep2Badge').textContent = '✓';
+            document.getElementById('hcStep3Indicator').style.opacity = '1';
+            document.getElementById('hcStep3Badge').style.background = '#10B981';
+            document.getElementById('hcStep3Badge').textContent = '✓';
+
+            btn.textContent = 'Gửi để nhận báo cáo →';
+            btn.disabled = false;
+        }
     </script>
 </body>
 </html>
