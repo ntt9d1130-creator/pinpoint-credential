@@ -1709,66 +1709,79 @@
                 font-size: 16px !important;
             }
 
-            /* Comparison table — stacked cards on mobile */
+            /* Comparison table — tab-based on mobile */
+            .compare-tabs {
+                display: flex !important;
+                gap: 0;
+                margin-bottom: 0;
+                border-radius: 10px 10px 0 0;
+                overflow: hidden;
+                border: 1px solid #E2E8F0;
+                border-bottom: none;
+            }
+            .compare-tab {
+                flex: 1;
+                padding: 10px 6px;
+                text-align: center;
+                font-size: 12px;
+                font-weight: 600;
+                cursor: pointer;
+                background: #F8FAFC;
+                color: #64748B;
+                border: none;
+                transition: all 0.2s;
+            }
+            .compare-tab.active {
+                background: #2B4A8E;
+                color: white;
+            }
+            .compare-tab[data-col="1"] {
+                border-right: 1px solid #E2E8F0;
+            }
+            .compare-tab[data-col="2"] {
+                border-right: 1px solid #E2E8F0;
+            }
             .comparison-table {
                 min-width: unset !important;
                 font-size: 13px !important;
+                border-radius: 0 0 10px 10px !important;
             }
             .comparison-table thead {
                 display: none !important;
             }
             .comparison-table tr {
-                display: block !important;
-                margin-bottom: 16px;
-                border: 1px solid #E2E8F0;
-                border-radius: 10px;
-                overflow: hidden;
-                box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+                display: flex !important;
+                flex-wrap: wrap;
             }
             .comparison-table tr[data-section] {
-                border: none;
-                box-shadow: none;
-                margin-bottom: 8px;
-            }
-            .comparison-table tr[data-section] td {
-                border-radius: 8px !important;
-                font-size: 13px !important;
-            }
-            .comparison-table td {
                 display: block !important;
-                padding: 10px 14px !important;
-                text-align: left !important;
-                border-bottom: 1px solid #F1F5F9 !important;
-                position: relative;
             }
-            .comparison-table td:before {
-                content: attr(data-label);
-                display: block;
-                font-size: 10px;
-                font-weight: 700;
-                text-transform: uppercase;
-                letter-spacing: 0.5px;
-                color: #94A3B8;
-                margin-bottom: 4px;
-            }
-            .comparison-table td:first-child {
+            .comparison-table td:nth-child(1) {
+                flex: 0 0 100%;
                 background: #F8FAFC;
-                font-weight: 700;
+                font-weight: 600;
+                font-size: 13px !important;
+                padding: 8px 12px !important;
                 color: #1E293B;
-                font-size: 14px !important;
+                border-bottom: 1px solid #E2E8F0 !important;
             }
-            .comparison-table td:first-child:before {
-                display: none;
+            .comparison-table td:nth-child(2),
+            .comparison-table td:nth-child(3),
+            .comparison-table td:nth-child(4) {
+                flex: 0 0 100%;
+                padding: 8px 12px !important;
+                font-size: 13px !important;
+                display: none !important;
             }
-            .comparison-table td.pinpoint {
+            .comparison-table td.mob-visible {
+                display: block !important;
+            }
+            .comparison-table td.pinpoint.mob-visible {
                 background: #EFF6FF !important;
-                border-left: 3px solid #2B4A8E;
-            }
-            .comparison-table td:last-child {
-                border-bottom: none !important;
             }
             .comparison-table tr[data-section] td[colspan] {
                 display: block !important;
+                flex: 0 0 100%;
             }
 
             /* Stats section */
@@ -2538,6 +2551,12 @@
                 <!-- Comparison Table -->
                 <h3 style="text-align: center; margin-top: 40px; margin-bottom: 8px; font-size: 1.3rem; color: var(--text-dark);">So sánh chi phí & giá trị</h3>
                 <p style="text-align: center; color: var(--text-light); margin-bottom: 24px; font-size: 0.9rem;">Tổng chi phí thực tế khi chạy quảng cáo với mỗi phương án</p>
+                <!-- Mobile tabs - hidden on desktop via CSS -->
+                <div class="compare-tabs" style="display: none;">
+                    <button class="compare-tab active" data-col="1" onclick="switchCompareTab(1)">✦ Pinpoint</button>
+                    <button class="compare-tab" data-col="2" onclick="switchCompareTab(2)">Freelancer</button>
+                    <button class="compare-tab" data-col="3" onclick="switchCompareTab(3)">Inhouse</button>
+                </div>
                 <div style="overflow-x: auto; -webkit-overflow-scrolling: touch;">
                 <table class="comparison-table">
                     <thead>
@@ -3298,6 +3317,35 @@
             btn.textContent = 'Gửi để nhận báo cáo →';
             btn.disabled = false;
         }
+        // === Comparison table mobile tabs ===
+        function switchCompareTab(col) {
+            // Update tab buttons
+            document.querySelectorAll('.compare-tab').forEach(t => t.classList.remove('active'));
+            document.querySelector('.compare-tab[data-col="' + col + '"]').classList.add('active');
+            // Show/hide columns: col 1=Pinpoint(td:nth-child(2)), 2=Freelancer(td:nth-child(3)), 3=Inhouse(td:nth-child(4))
+            const table = document.querySelector('.comparison-table');
+            table.querySelectorAll('td:nth-child(2), td:nth-child(3), td:nth-child(4)').forEach(td => {
+                td.classList.remove('mob-visible');
+            });
+            const childIndex = col + 1; // col 1 → td:nth-child(2), etc
+            table.querySelectorAll('td:nth-child(' + childIndex + ')').forEach(td => {
+                td.classList.add('mob-visible');
+            });
+        }
+
+        // Auto-init on mobile
+        function initCompareTable() {
+            if (window.innerWidth <= 480) {
+                switchCompareTab(1); // Default show Pinpoint
+            } else {
+                // Desktop: show all columns
+                document.querySelectorAll('.comparison-table td').forEach(td => {
+                    td.classList.remove('mob-visible');
+                });
+            }
+        }
+        window.addEventListener('resize', initCompareTable);
+        initCompareTable();
     </script>
 </body>
 </html>
